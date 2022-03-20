@@ -47,7 +47,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull AppListAdapter.ViewHolder holder, int position) {
-        holder.appPackageName.setText(applicationInfos.get(position).packageName);
+//        holder.appPackageName.setText(applicationInfos.get(position).packageName);
         holder.appName.setText( packageManager.getApplicationLabel(applicationInfos.get(position)));
         Drawable appIconDrawable =  applicationInfos.get(position).loadIcon(packageManager);
         holder.appIcon.setImageDrawable(appIconDrawable);
@@ -77,12 +77,11 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView appIcon;
-        TextView appPackageName,appName;
+        TextView appName;
         CheckBox checkBox;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             appIcon = itemView.findViewById(R.id.img_icon);
-            appPackageName = itemView.findViewById(R.id.tx_pkg);
             appName = itemView.findViewById(R.id.tx_app);
             checkBox = itemView.findViewById(R.id.cb_app);
             

@@ -10,4 +10,5 @@
     <string name="alert_miui_title">Miui Detected!</string>
     <string name="alert_miui_message">Miui requires an additional permission to work.\nOn the App\'s Information page, please go to \'Other Permissions\' and enable \'Display Pop Up while in background\'</string>
     <string name="toast_miui_alert"><![CDATA[Go to Other Permissions > Display Pop Up while in background]]></string>
+    <string name="ab_nhi_chalau_ga_bhai">Ab nhi chalau ga Bhai</string>
 </resources>

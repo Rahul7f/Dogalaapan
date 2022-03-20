@@ -20,6 +20,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         recyclerView = findViewById(R.id.rv_apps);
         actionButton = findViewById(R.id.fab_save);
 
@@ -128,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void promptServiceOff() {
-        Context context = new ContextThemeWrapper(MainActivity.this, R.style.AppTheme2);
-        new MaterialAlertDialogBuilder(context)
+//        Context context = new ContextThemeWrapper(MainActivity.this, R.style.AppTheme2);
+        new MaterialAlertDialogBuilder(MainActivity.this)
                 .setTitle(R.string.alert_title)
                 .setMessage(R.string.alert_message)
                 .setPositiveButton(R.string.alert_enable,(dialogInterface, i) -> {
@@ -144,9 +146,12 @@ public class MainActivity extends AppCompatActivity {
     private boolean isServiceEnabled() {
         AccessibilityManager am = (AccessibilityManager) getApplicationContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
         List<AccessibilityServiceInfo> enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
+//        Log.d("enabledServices", enabledServices.toString());
         for (AccessibilityServiceInfo enabledService : enabledServices) {
+
             ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
-            if (enabledServiceInfo.packageName.equals(getPackageName()) && enabledServiceInfo.name.equals("accessibility"))
+//            Log.d("enabledServices", enabledServiceInfo.packageName+" name:---- "+enabledServiceInfo.name);
+            if (enabledServiceInfo.packageName.equals(getPackageName()))
                 return true;
         }
 
